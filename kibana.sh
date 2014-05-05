@@ -11,6 +11,8 @@ mv kibana-3.0.0 /usr/share/kibana
 
 # Set logstash dashboard as the default
 mv -f /usr/share/kibana/app/dashboards/logstash.json /usr/share/kibana/app/dashboards/default.json
+# Set the location of elasticsearch
+sed -i "s|\s*elasticsearch:.*$|elasticsearch: window.location.protocol+\"//\"+window.location.hostname,|g" /usr/share/kibana/config.js
 
 # Install and configure nginx
 cat > /etc/yum.repos.d/nginx.repo <<- EOF

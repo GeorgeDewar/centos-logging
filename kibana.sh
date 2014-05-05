@@ -5,9 +5,9 @@ yum install -y wget
 
 # Install Kibana
 cd /tmp
-wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz -O kibana.tar.gz
-tar -xzf kibana.tar.gz
-mv kibana /usr/share/kibana
+wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz -O kibana-3.0.0.tar.gz
+tar -xzf kibana-3.0.0.tar.gz
+mv kibana-3.0.0 /usr/share/kibana
 
 # Set logstash dashboard as the default
 mv -f /usr/share/kibana/app/dashboards/logstash.json /usr/share/kibana/app/dashboards/default.json

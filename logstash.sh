@@ -13,3 +13,4 @@ gpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch
 enabled=1
 EOF
 
+yum install -y logstash

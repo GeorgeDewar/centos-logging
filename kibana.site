@@ -16,7 +16,7 @@ server {
   server_name           _;
 
   auth_basic "Restricted";
-  auth_basic_user_file /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
+  auth_basic_user_file /etc/nginx/conf.d/kibana.htpasswd;
 
   location / {
     root  /usr/share/kibana;

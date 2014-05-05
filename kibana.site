@@ -8,7 +8,7 @@
 # http://FQDN:9200
 #
 upstream es {
-  server http://127.0.0.1:9200;
+  server 127.0.0.1:9200;
 }
 
 server {

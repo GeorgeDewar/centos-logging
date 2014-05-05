@@ -1,0 +1,46 @@
+#
+# Nginx proxy for Elasticsearch + Kibana
+#
+# In this setup, we are reverse proxying ElasticSearch while serving Kibana
+# directly. All paths are protected via basic auth.
+#
+# If you use this, you'll want to point config.js at http://FQDN:80/ instead of
+# http://FQDN:9200
+#
+upstream es {
+  server http://127.0.0.1:9200;
+}
+
+server {
+  listen                *:80 ;
+  server_name           _;
+
+  auth_basic "Restricted";
+  auth_basic_user_file /etc/nginx/conf.d/kibana.myhost.org.htpasswd;
+
+  location / {
+    root  /usr/share/kibana;
+    index  index.html;
+  }
+
+  location ~ ^/_aliases$ {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_aliases$ {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/_nodes$ {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_search$ {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_mapping {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+}

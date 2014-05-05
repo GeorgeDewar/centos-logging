@@ -1,7 +1,8 @@
 #!/bin/bash
  
 yum install -y java-1.7.0-openjdk
- 
+
+rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
 cat > /etc/yum.repos.d/ElasticSearch-1.0.repo <<- EOF
 [elasticsearch-1.0]
 name=Elasticsearch repository for 1.0.x packages

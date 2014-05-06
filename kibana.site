@@ -23,6 +23,11 @@ server {
     index  index.html;
   }
 
+  location /kibana-int {
+    proxy_pass http://es;
+    proxy_read_timeout 90;
+  }
+
   location ~ ^/_aliases$ {
     proxy_pass http://es;
     proxy_read_timeout 90;

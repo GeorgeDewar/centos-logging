@@ -5,7 +5,7 @@ yum install -y wget
 
 # Install Kibana
 cd /tmp
-if [ ! -f "kibana-3.0.0.tar.gz" ]; do
+if [ ! -f "kibana-3.0.0.tar.gz" ]; then
   wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz -O kibana-3.0.0.tar.gz
 fi
 tar -xzf kibana-3.0.0.tar.gz
@@ -25,7 +25,7 @@ gpgcheck=0
 enabled=1
 EOF
 yum install -y nginx httpd-tools
-if [ ! -f "/tmp/kibana.site" ]; do
+if [ ! -f "/tmp/kibana.site" ]; then
   wget https://raw.githubusercontent.com/GeorgeDewar/centos-logging/master/kibana.site -O /etc/nginx/conf.d/kibana.conf
 else
   cp /tmp/kibana.site /etc/nginx/conf.d/kibana.conf

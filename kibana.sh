@@ -5,7 +5,9 @@ yum install -y wget
 
 # Install Kibana
 cd /tmp
-wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz -O kibana-3.0.0.tar.gz
+if [ ! -f "kibana-3.0.0.tar.gz" ]; do
+  wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0.tar.gz -O kibana-3.0.0.tar.gz
+fi
 tar -xzf kibana-3.0.0.tar.gz
 mv kibana-3.0.0 /usr/share/kibana
 
@@ -23,7 +25,11 @@ gpgcheck=0
 enabled=1
 EOF
 yum install -y nginx httpd-tools
-wget https://raw.githubusercontent.com/GeorgeDewar/centos-logging/master/kibana.site -O /etc/nginx/conf.d/kibana.conf
+if [ ! -f "/tmp/kibana.site" ]; do
+  wget https://raw.githubusercontent.com/GeorgeDewar/centos-logging/master/kibana.site -O /etc/nginx/conf.d/kibana.conf
+else
+  cp /tmp/kibana.site /etc/nginx/conf.d/kibana.conf
+fi
 rm -f /etc/nginx/conf.d/default.conf
 
 # Create an .htpasswd file (INTERACTIVE)
